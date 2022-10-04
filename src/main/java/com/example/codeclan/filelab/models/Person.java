@@ -1,5 +1,6 @@
 package com.example.codeclan.filelab.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,8 @@ public class Person {
     private Long id;
 
     private String name;
+
+    @JsonIgnoreProperties("folders")
     @OneToMany(mappedBy = "person")
     private List<Folder> folders;
 

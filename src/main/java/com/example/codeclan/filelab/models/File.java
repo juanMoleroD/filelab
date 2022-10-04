@@ -1,6 +1,7 @@
 package com.example.codeclan.filelab.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ public class File {
     private int size;
     @ManyToOne
     @JoinColumn(name = "folder_id", nullable = false)
+    @JsonIgnoreProperties({"file"})
     private Folder folder;
 
     public File(String name, String extension, int size, Folder folder) {
