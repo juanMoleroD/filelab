@@ -22,8 +22,8 @@ public class PersonControlller {
     }
 
     @GetMapping("/persons/{id}")
-    public ResponseEntity getPersonById(@PathVariable Long id){
-        return new ResponseEntity(repo.findById(id), HttpStatus.OK);
+    public ResponseEntity<Optional<Person>> getPersonById(@PathVariable Long id){
+        return new ResponseEntity<>(repo.findById(id), HttpStatus.OK);
     }
 
     @PostMapping("/persons")
