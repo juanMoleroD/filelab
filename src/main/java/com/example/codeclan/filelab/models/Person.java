@@ -3,15 +3,13 @@ package com.example.codeclan.filelab.models;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
+@Table(name = "persons")
 @NoArgsConstructor
 public class Person {
 
@@ -20,11 +18,16 @@ public class Person {
     private Long id;
 
     private String name;
-//    private List<Folder> folders;
+    @OneToMany(mappedBy = "person")
+    private List<Folder> folders;
 
 
     public Person(String name) {
         this.name = name;
-//        this.folders = new ArrayList<>();
+        this.folders = new ArrayList<>();
+    }
+
+    public void addFolder(Folder folder) {
+        this.folders.add(folder);
     }
 }

@@ -4,6 +4,7 @@ import com.example.codeclan.filelab.models.File;
 import com.example.codeclan.filelab.models.Folder;
 import com.example.codeclan.filelab.models.Person;
 import com.example.codeclan.filelab.repositories.FileRepository;
+import com.example.codeclan.filelab.repositories.FolderRepository;
 import com.example.codeclan.filelab.repositories.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,9 @@ class FilelabApplicationTests {
 	@Autowired
 	PersonRepository personRepo;
 
+	@Autowired
+	FolderRepository folderRepo;
+
 	File file;
 	Person person;
 	Folder folder;
@@ -35,13 +39,15 @@ class FilelabApplicationTests {
 
 	@Test
 	void loadingData() {
-		folder = new Folder();
 		person = new Person("Juan");
-		file = new File("myFile", ".txt", 10 );
-
 		personRepo.save(person);
 		assertTrue(personRepo.findAll().size() > 0);
 
+		folder = new Folder("myFolder", person);
+		folderRepo.save(folder);
+		assertTrue(folderRepo.findAll().size() > 0);
+
+		file = new File("myFile", ".txt", 10 , folder);
 		fileRepo.save(file);
 		assertTrue(fileRepo.findAll().size() > 0);
 
