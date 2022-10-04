@@ -29,6 +29,10 @@ public class DataLoader implements ApplicationRunner {
     public DataLoader(){}
 
     public void run(ApplicationArguments args) {
+        fileRepo.deleteAll();
+        folderRepo.deleteAll();
+        personRepo.deleteAll();
+
         Person person1 = new Person("Juan");
         personRepo.save(person1);
 
