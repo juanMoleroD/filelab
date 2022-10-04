@@ -21,7 +21,7 @@ public class File {
     private String name;
     private String extension;
     private int size;
-    private Folder folder;
+//    private Folder folder;
 
     public File(String name, String extension, int size) {
         this.name = name;
